@@ -1,0 +1,90 @@
+const STORE = {
+  Burgers: [
+    {
+      name: "Home Sweet Avocado",
+      description:
+        "All beef patty smothered in sweet lime sauce and topped with fresh avocado, sweet onion, tomato, peppers and stevia. Served on a whole wheat bun.",
+      price: 5.95,
+      photo: "https://i.ibb.co/VSXr6Vg/avocado.png",
+    },
+    {
+      name: "Beet-er Late Than Never",
+      description:
+        "Red beet patty topped with lettuce, relish, tomatoes, pickled beets, and garlic aioli. Served on a whole wheat bun.",
+      price: 5.95,
+      photo: "https://i.ibb.co/Msxt12n/beet.png",
+    },
+    {
+      name: "Bohemian Radishy",
+      description:
+        "All beef patty and swiss cheese slathered in honey dijon mustard sauce topped with pickled radish and yellow pepper relish. Served on a sunflower honey oat roll.",
+      price: 5.95,
+      photo: "https://i.ibb.co/0snNWyp/bohemian.png",
+    },
+    {
+      name: "Don't You Four Cheddar 'Bout Me",
+      description:
+        "Angus beef patty stuffed with horseradish cheddar and sharp yellow cheddar, topped with mild yellow and sharp white cheddar, crispy bacon, lettuce, and onion. Served on a pretzel bun.",
+      price: 5.95,
+      photo: "https://i.ibb.co/kXg0tG3/cheddar.png",
+    },
+    {
+      name: "Baby You Can Chive My Car",
+      description:
+        "All beef patty stuffed with feta cheese and topped with diced chives and a creamy sour cream & mustard spread. Served on a chive-tastic bun. Comes with fried pickle wheels.",
+      price: 5.95,
+      photo: "https://i.ibb.co/Lr5Cxsx/chive.png",
+    },
+    {
+      name: "Mission A-corn-plished",
+      description:
+        "All beef patty seasoned with a taco blend topped with sweet corn salsa and arugula. Served on a Vienna roll",
+      price: 5.95,
+      photo: "https://i.ibb.co/DpYnn7k/corn.png",
+    },
+    {
+      name: "Eggers Can't Be Cheesers",
+      description:
+        "All beef patty topped with lettuce, tomato, American cheese, and a fried egg smothered in hot sauce. Served on a maple bun.",
+      price: 5.95,
+      photo: "https://i.ibb.co/1QvdW57/egg.png",
+    },
+    {
+      name: "Gourdon Hamsey",
+      description:
+        "Fried ham patty topped with tomato, lettuce, smoked gouda, and fried squash. Served on a sesame bun.",
+      price: 5.95,
+      photo: "https://i.ibb.co/CmPvck8/ham.png",
+    },
+    {
+      name: "If Looks Could Kale",
+      description:
+        "Impossible burger topped with dairy-free gruyere topped with garlic roasted kale, tomatoes and avocado spread. Served on a whole wheat bun.",
+      price: 5.95,
+      photo: "https://i.ibb.co/6bqr23n/kale.png",
+    },
+    {
+      name: "Olive And Let Die",
+      description:
+        "All beef patty topped with provolone cheese, lettuce, tomato, olive tapenade and garlic aioli crowned with an olive skewer. Served on a whole wheat bun.",
+      price: 5.95,
+      photo: "https://i.ibb.co/gJmCgR1/olive.png",
+    },
+    {
+      name: "Peas And Thank You",
+      description:
+        "All beef patty topped with Swiss cheese, lettuce, tomato, garlic aioli and peas. Served on a sesame bun.",
+      price: 5.95,
+      photo: "https://i.ibb.co/VB41cTt/peas.png",
+    },
+    {
+      name: "Hit Me With Your Best Shallot",
+      description:
+        "All beef patty seasoned with thyme topped with caramelized shallots, lettuce, tomato and smothered in a creamy cherve spread. Served on a french roll. ",
+      price: 5.95,
+      photo: "https://i.ibb.co/6JnWN2q/shallot.png",
+    },
+  ],
+};
+
+export default STORE;
