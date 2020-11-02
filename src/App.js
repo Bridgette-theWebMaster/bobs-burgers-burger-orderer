@@ -35,6 +35,7 @@ class App extends React.Component {
     });
   };
 
+
   render() {
     return (
       <div className="App">
@@ -53,15 +54,15 @@ class App extends React.Component {
             </div>
           </Modal>
           <Switch>
-            {["/", "/menu"].map((path, i) => (
+            {["/", "/login"].map((path, i) => (
               <Route
                 path={path}
                 exact
-                render={(props) => <Menu showModal={this.modalHandler} />}
+                component={Login}
                 key={i}
               />
             ))}
-            <Route path="/login" component={Login} />
+            <Route path="/menu" render={(props) => <Menu showModal={this.modalHandler} />} />
             <Route path="/register" component={Register} />
           </Switch>
         </header>

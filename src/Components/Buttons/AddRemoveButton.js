@@ -1,7 +1,10 @@
 import React from "react";
 
-export default class AddRemoveButton extends React.Component {
-  constructor(props) {
+
+//trun onClcik into a function, maybe?
+
+export default function AddRemoveButton(props) {
+/*  constructor(props) {
     super(props);
     this.state = {
       count: 0,
@@ -20,13 +23,13 @@ export default class AddRemoveButton extends React.Component {
       count: state.count > 0 ? state.count - 1 : state.count + 0,
     }));
   }
-  render() {
+  render() {*/
     return (
       <div>
-        <button onClick={this.addToBag}> + </button>
-        {this.state.count}
-        <button onClick={this.removeFromBag}> - </button>
+        <button onClick={props.addClicked} id={props.value}> + </button>
+        {props.order}
+        <button onClick={props.removeClicked} id={props.value}> - </button>
       </div>
     );
-  }
+
 }
