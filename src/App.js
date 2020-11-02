@@ -4,6 +4,9 @@ import Menu from "./Screens/Menu/Menu";
 import Modal from "./Modal/Modal";
 import Cart from "./Screens/Cart/Cart";
 import Confirmation from "./Screens/Confirmation/Confirmation";
+import Login from "./Screens/Users/Login/Login";
+import Register from "./Screens/Users/Register/Register";
+import { Route, Switch } from "react-router-dom";
 
 class App extends React.Component {
   constructor(props) {
@@ -49,7 +52,18 @@ class App extends React.Component {
               />
             </div>
           </Modal>
-          <Menu showModal={this.modalHandler} />
+          <Switch>
+            {["/", "/menu"].map((path, i) => (
+              <Route
+                path={path}
+                exact
+                render={(props) => <Menu showModal={this.modalHandler} />}
+                key={i}
+              />
+            ))}
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+          </Switch>
         </header>
       </div>
     );
