@@ -15,9 +15,12 @@ class App extends React.Component {
       modalToggle: false,
       confirmation: false,
       cart: true,
+      count: 0,
     };
     this.modalHandler = this.modalHandler.bind(this);
     this.confirmationHandler = this.confirmationHandler.bind(this);
+    this.addToBag = this.addToBag.bind(this);
+    this.removeFromBag = this.removeFromBag.bind(this);
   }
 
   modalHandler = (e) => {
@@ -35,6 +38,16 @@ class App extends React.Component {
     });
   };
 
+  addToBag() {
+    this.setState((state) => ({
+      burgers: state.count + 1,
+    }));
+  }
+  removeFromBag() {
+    this.setState((state) => ({
+      burgers: state.count > 0 ? state.count - 1 : state.count + 0,
+    }));
+  }
 
   render() {
     return (
@@ -55,14 +68,19 @@ class App extends React.Component {
           </Modal>
           <Switch>
             {["/", "/login"].map((path, i) => (
-              <Route
-                path={path}
-                exact
-                component={Login}
-                key={i}
-              />
+              <Route path={path} exact component={Login} key={i} />
             ))}
-            <Route path="/menu" render={(props) => <Menu showModal={this.modalHandler} />} />
+            <Route
+              path="/menu"
+              render={(props) => (
+                <Menu
+                  showModal={this.modalHandler}
+                  addBurger={this.addToBag}
+                  removeBurger={this.removeFromBag}
+                  countBurger={this.state.count}
+                />
+              )}
+            />
             <Route path="/register" component={Register} />
           </Switch>
         </header>

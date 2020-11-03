@@ -1,10 +1,8 @@
 import React from "react";
 
-
-//trun onClcik into a function, maybe?
-
+//refuses to update state of order
 export default function AddRemoveButton(props) {
-/*  constructor(props) {
+  /*  constructor(props) {
     super(props);
     this.state = {
       count: 0,
@@ -23,13 +21,20 @@ export default function AddRemoveButton(props) {
       count: state.count > 0 ? state.count - 1 : state.count + 0,
     }));
   }
-  render() {*/
-    return (
-      <div>
-        <button onClick={props.addClicked} id={props.value}> + </button>
-        {props.order}
-        <button onClick={props.removeClicked} id={props.value}> - </button>
-      </div>
-    );
-
+  render() {
+    */
+  console.log(props);
+  return (
+    <div>
+      <button onClick={props.addClicked} id={props.value}>
+        {" "}
+        +{" "}
+      </button>
+      {props.orderNum}
+      <button onClick={props.removeClicked} id={props.value}>
+        {" "}
+        -{" "}
+      </button>
+    </div>
+  );
 }
