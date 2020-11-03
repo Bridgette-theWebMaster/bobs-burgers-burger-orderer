@@ -1,6 +1,4 @@
 import React from "react";
-import STORE from "../../STORE";
-import AddRemoveButton from "../Buttons/AddRemoveButton";
 
 //button should be specific to the burger.
 //so far when buttons are clicked, map is undefined
@@ -8,29 +6,25 @@ import AddRemoveButton from "../Buttons/AddRemoveButton";
 //try Object.keys()
 
 export default function Burger(props) {
-  const burgers = STORE.Burgers;
-  console.log(props);
-  const burger = burgers.map((b) => {
+  console.log(props)
     return (
-      <ul key={b.id}>
-        <li>
-          <img src={b.photo} alt={b.name} />
-        </li>
-        <li>{b.name}</li>
-        <li>{b.description}</li>
-        <li>
-          <strong>{b.price}</strong>
-        </li>
-        <li>
-          <AddRemoveButton
-            addClicked={props.add}
-            removeClicked={props.remove}
-            orderNum={props.order}
-          />
-        </li>
+      <ul className='burgers'>
+        {props.burger.map(b => (
+          <li key={b.id}>
+            <div className='burger'>
+              <img src={b.photo} alt={b.name} />
+              <h2>{b.name}</h2>
+              <p>{b.description}</p>
+              <div className='burger-price'>
+                <h3>${b.price}</h3>
+              </div>
+              <button onClick={() => props.addBurger(b)} className='button primary'>
+                Add to Bag
+              </button>
+              
+            </div>
+          </li>
+        ))}
       </ul>
     );
-  });
-
-  return <div>{burger}</div>;
 }

@@ -8,15 +8,11 @@ export default function Menu(props) {
   return (
     <div className="Menu-container">
       <CartButton className="Cart-button" clicked={props.showModal} />
-      <img
-        src="https://i.cdn.tbs.com/assets/images/2017/03/BobsBurgers-Logo-900x360.png"
-        alt="logo"
-        className="logo"
-      />
+      <br />
+      {props.order.length}
       <Burger
-        add={props.addBurger}
-        remove={props.removeBurger}
-        order={props.countBurger}
+        burger={props.burgers}
+        addBurger={props.addToBag}
       />
     </div>
   );

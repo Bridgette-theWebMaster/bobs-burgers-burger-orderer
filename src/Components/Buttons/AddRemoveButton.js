@@ -1,8 +1,8 @@
 import React from "react";
 
-//refuses to update state of order
-export default function AddRemoveButton(props) {
-  /*  constructor(props) {
+//remove state
+export default class AddRemoveButton extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       count: 0,
@@ -22,19 +22,18 @@ export default function AddRemoveButton(props) {
     }));
   }
   render() {
-    */
-  console.log(props);
   return (
     <div>
-      <button onClick={props.addClicked} id={props.value}>
+      <button onClick={this.addToBag}>
         {" "}
         +{" "}
       </button>
-      {props.orderNum}
-      <button onClick={props.removeClicked} id={props.value}>
+      {this.state.count}
+      <button onClick={this.removeFromBag}>
         {" "}
         -{" "}
       </button>
     </div>
   );
+  }
 }
