@@ -15,6 +15,7 @@ class App extends React.Component {
     this.state = {
       burgers: data.Burgers,
       modalToggle: false,
+      confirmModal: false,
       confirmation: false,
       cart: true,
       order: [],
@@ -32,9 +33,19 @@ class App extends React.Component {
     });
   };
 
+  removeModal = (e) => {
+    e.preventDefault()
+    this.setState({
+      confirmModal: !this.state.confirmModal,
+      confirmation: !this.state.confirmation
+    })
+  }
+
   confirmationHandler = (e) => {
     e.preventDefault();
     this.setState({
+      modalToggle: !this.state.modalToggle,
+      confirmModal: !this.state.confirmModal,
       confirmation: !this.state.confirmation,
       cart: !this.state.cart,
     });
@@ -82,9 +93,16 @@ class App extends React.Component {
                 order={this.state.order}
                 removeFromBag={this.removeFromBag}
               />
+            </div>
+          </Modal>
+          <Modal 
+            show={this.state.confirmation} 
+            showModal={this.modalHandler}
+          >
+            <div style={{ color: "black" }}>
               <Confirmation
                 show={this.state.confirmation}
-                showModal={this.modalHandler}
+                showModal={this.removeModal}
               />
             </div>
           </Modal>

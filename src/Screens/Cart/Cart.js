@@ -1,5 +1,4 @@
 import React from "react";
-import AddRemoveButton from "../../Components/Buttons/AddRemoveButton";
 import OrderButton from "../../Components/Buttons/OrderButton";
 import './Cart.css'
 
