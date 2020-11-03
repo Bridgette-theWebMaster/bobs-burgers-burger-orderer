@@ -8,11 +8,6 @@ export default class Login extends React.Component {
   render() {
     return (
       <div className="Login">
-        <img
-          src="https://i.cdn.tbs.com/assets/images/2017/03/BobsBurgers-Logo-900x360.png"
-          alt="logo"
-          className="logo"
-        />
         <h2>Login</h2>
         <form className="Login-form">
           <input type="text" name="username" placeholder="email" />

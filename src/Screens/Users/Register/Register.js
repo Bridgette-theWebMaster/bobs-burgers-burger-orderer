@@ -6,11 +6,6 @@ export default class Register extends React.Component {
   render() {
     return (
       <div className="Register">
-        <img
-          src="https://i.cdn.tbs.com/assets/images/2017/03/BobsBurgers-Logo-900x360.png"
-          alt="logo"
-          className="logo"
-        />
         <h2>Register</h2>
         <form className="Register-form">
           <label>

@@ -1,5 +1,6 @@
 import React from "react";
-//import Timer from "./Timer";
+import Moment from 'react-moment'
+import Timer from "../../Components/Timer/Timer";
 
 export default function Confirmation(props) {
   const min = 100000;
@@ -15,7 +16,7 @@ export default function Confirmation(props) {
     >
       <h2>Order Received!</h2>
       <p>Your order number {rand} is being made fresh!</p>
-      <p>Order ready in:</p>
+      <p>Order ready in: <Timer /></p>
       <button type="button" onClick={props.showModal}>
         Ok
       </button>
