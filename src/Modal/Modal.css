@@ -3,6 +3,7 @@
   z-index: 500;
   background-color: white;
   width: 70%;
+  height: 50%;
   border: 1px solid #ccc;
   box-shadow: 1px 1px 1px black;
   padding: 16px;
@@ -12,4 +13,5 @@
   transition: all 0.3s ease-out;
   padding: 2px;
   margin: 2px;
+  overflow: auto;
 }

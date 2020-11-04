@@ -56,7 +56,8 @@ class App extends React.Component {
     let alreadyInBag = false
     order.forEach((item) => {
       if(item.id === b.id){
-        item.count ++
+        //item.count ++
+        order.push({...b, count: 1})
         alreadyInBag = true
       }
     })
@@ -83,7 +84,7 @@ class App extends React.Component {
         className="logo"
       />
         </header>
-        <main classNAme='App-main'>
+        <main className='App-main'>
           <Modal show={this.state.modalToggle} showModal={this.modalHandler}>
             <div style={{ color: "black" }}>
               <Cart

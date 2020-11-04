@@ -1,6 +1,7 @@
 import React from "react";
 import OrderButton from "../../Components/Buttons/OrderButton";
 import './Cart.css'
+import formatCurrency from '../../util'
 
 export default function Cart(props) {
   const {order} = props
@@ -39,7 +40,7 @@ export default function Cart(props) {
       {order.length !== 0 && (
         <div className='cart'>
           <div className='total'>
-            <strong>Total: ${order.reduce((a, c) => a + (c.price*c.count), 0)}</strong>
+            <strong>Total: {formatCurrency(order.reduce((a, c) => a + (c.price*c.count), 0))}</strong>
           </div>
           <OrderButton clicked={props.showConfirm} />
         </div>
