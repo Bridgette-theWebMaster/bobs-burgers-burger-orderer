@@ -5,7 +5,6 @@ import formatCurrency from '../../util'
 
 export default function Cart(props) {
   const {order} = props
-  console.log(order)
   return (
     <div
       style={{

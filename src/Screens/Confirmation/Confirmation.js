@@ -5,7 +5,7 @@ export default function Confirmation(props) {
   const min = 100000;
   const max = 999999;
   const rand = Math.floor(min + Math.random() * (max - min));
-  console.log(props)
+
   return (
     <div
       style={{

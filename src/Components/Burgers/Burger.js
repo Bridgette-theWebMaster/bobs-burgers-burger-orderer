@@ -1,12 +1,7 @@
 import React from "react";
 
-//button should be specific to the burger.
-//so far when buttons are clicked, map is undefined
-//count in both state and STORE json
-//try Object.keys()
 
 export default function Burger(props) {
-  console.log(props)
     return (
       <ul className='burgers'>
         {props.burger.map(b => (
