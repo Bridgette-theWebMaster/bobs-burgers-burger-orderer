@@ -27,7 +27,7 @@ export default function Cart(props) {
                 <div>{i.name}</div>
                 <div className='right'>
                   {i.price} x {i.count} {' '}
-                  <button className='button' onClick={() => props.removeFromCart(i)}>
+                  <button className='button' onClick={() => props.removeFromBag(i)}>
                     REMOVE
                   </button>
                 </div>

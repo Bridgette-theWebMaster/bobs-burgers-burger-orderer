@@ -56,7 +56,7 @@ class App extends React.Component {
     let alreadyInBag = false
     order.forEach((item) => {
       if(item.id === b.id){
-        item.count++
+        item.count ++
         alreadyInBag = true
       }
     })
