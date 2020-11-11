@@ -1,83 +1,82 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./Register.css";
+import { toast } from "react-toastify";
+import './Register.css'
 
-export default function Register (props) {
- /* const [state, setState] = useState({
-    name: '',
-    email: '',
-    password: '',
-    passwordMatch: '',
-  })
-  const handleChange = (e) => {
-    const {id, value} = e.target
-    setState(prevState => ({
-      ...prevState,
-      [id] : value
-    }))
-  }
+const Register = ({ setAuth }) => {
+  const [inputs, setInputs] = useState({
+    email: "",
+    password: "",
+    name: ""
+  });
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if(state.password === state.passwordMatch){
-      sendDetailsToServer()
-    }else{
-      props.showError('Passwords do not match')
+  const { email, password, name } = inputs;
+
+  const onChange = e =>
+    setInputs({ ...inputs, [e.target.name]: e.target.value });
+
+  const onSubmitForm = async e => {
+    e.preventDefault();
+    try {
+      const body = { email, password, name };
+      const response = await fetch(
+        "https://afternoon-wave-89398.herokuapp.com/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(body)
+        }
+      );
+      const parseRes = await response.json();
+      
+      if(parseRes.jwtToken){
+        localStorage.setItem("token", parseRes.jwtToken)
+
+        setAuth(true)
+        toast.success('Register Successful')
+      } else {
+        setAuth(false)
+        toast.error(parseRes)
+      }
+
+    } catch (err) {
+      console.error(err.message);
     }
-  }
-  onChange = {handleChange}
-  onClick={handleSubmit}
-  */
-    return (
-      <div className="Register">
-        <h2>Register</h2>
-        <form className="Register-form">
-          <label>
-            Name
-            <br />
-            <input 
-              type="text" 
-              id="name"
-               />
-          </label>
-          <br />
-          <label>
-            Email
-            <br />
-            <input 
-              type="text" 
-              id="email"
-               />
-                        </label>
-          <br />
-          <label>
-            Password
-            <br />
-            <input 
-              type="password" 
-              id="password"
-               />
-                        </label>
-          <br />
-          <label>
-            Re-enter Password
-            <br />
-            <input 
-              type="password" 
-              id="passwordMatch"
-               />
-                        </label>
-          <br />
-          <Link to="/Login">
-            <button 
-              type="submit"
-              >
-                Register
-            </button>
-            <p>Already have an account?</p>
-          </Link>
-        </form>
-      </div>
-    );
-  }
+  };
 
+  return (
+    <div className='Register'>
+      <h1>Register</h1>
+      <form onSubmit={onSubmitForm}>
+        <input
+          type="text"
+          name="name"
+          value={name}
+          placeholder="Name"
+          onChange={e => onChange(e)}
+        />
+        <input
+          type="email"
+          name="email"
+          value={email}
+          placeholder="Email"
+          onChange={e => onChange(e)}
+        />
+        <input
+          type="password"
+          name="password"
+          value={password}
+          placeholder="Password"
+          onChange={e => onChange(e)}
+        />
+        
+        <button>Register</button>
+      </form>
+      <Link to="/login">Already have an account? Login.</Link>
+    </div>
+  );
+};
+
+export default Register;

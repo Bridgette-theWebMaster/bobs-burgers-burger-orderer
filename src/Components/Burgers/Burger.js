@@ -1,10 +1,13 @@
 import React from "react";
-
+import data from '../../data.json'
 
 export default function Burger(props) {
+  
+  const burgers = data.Burgers
+  //console.log(burgers)
     return (
       <ul className='burgers'>
-        {props.burger.map(b => (
+        {burgers.map(b => (
           <li key={b.id}>
             <div className='burger'>
               <img src={b.photo} alt={b.name} />
