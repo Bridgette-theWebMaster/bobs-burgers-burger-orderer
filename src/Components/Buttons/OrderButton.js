@@ -1,5 +1,8 @@
 import React from "react";
 
 export default function OrderButton(props) {
-  return <button>Order</button>;
+
+  return <button
+    /*onClick={props.onClick}*/
+    className='button'>Order</button>;
 }

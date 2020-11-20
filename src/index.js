@@ -4,10 +4,11 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import Menu from "./Screens/Menu/Menu";
+import Confirmation from "./Screens/Confirmation/Confirmation";
 
 ReactDOM.render(
   <BrowserRouter>
-    <Menu />
+    <App />
   </BrowserRouter>,
   document.getElementById("root")
 );

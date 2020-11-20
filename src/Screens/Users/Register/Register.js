@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import './Register.css'
 
 const Register = ({ setAuth }) => {
   const [inputs, setInputs] = useState({
@@ -11,7 +10,8 @@ const Register = ({ setAuth }) => {
   });
 
   const { email, password, name } = inputs;
-
+  const url = "https://afternoon-wave-89398.herokuapp.com/auth/"
+//http://localhost:8000/auth
   const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
 
@@ -20,7 +20,7 @@ const Register = ({ setAuth }) => {
     try {
       const body = { email, password, name };
       const response = await fetch(
-        "https://afternoon-wave-89398.herokuapp.com/auth/register",
+        url + "/register",
         {
           method: "POST",
           headers: {
@@ -47,9 +47,9 @@ const Register = ({ setAuth }) => {
   };
 
   return (
-    <div className='Register'>
+    <div>
       <h1>Register</h1>
-      <form onSubmit={onSubmitForm}>
+      <form onSubmit={onSubmitForm} className='Register' >
         <input
           type="text"
           name="name"
@@ -57,6 +57,7 @@ const Register = ({ setAuth }) => {
           placeholder="Name"
           onChange={e => onChange(e)}
         />
+        <br />
         <input
           type="email"
           name="email"
@@ -64,6 +65,7 @@ const Register = ({ setAuth }) => {
           placeholder="Email"
           onChange={e => onChange(e)}
         />
+        <br />
         <input
           type="password"
           name="password"
@@ -71,10 +73,11 @@ const Register = ({ setAuth }) => {
           placeholder="Password"
           onChange={e => onChange(e)}
         />
-        
-        <button>Register</button>
+        <br />
+        <button className='button'>Register</button>
       </form>
-      <Link to="/login">Already have an account? Login.</Link>
+      <br />
+      <Link to="/login" className='link'>Already have an account? Login.</Link>
     </div>
   );
 };

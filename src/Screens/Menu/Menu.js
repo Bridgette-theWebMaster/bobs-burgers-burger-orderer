@@ -1,110 +1,110 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Burger from "../../Components/Burgers/Burger";
 import CartButton from "../../Components/Buttons/CartButton";
 import "./Menu.css";
 import Modal from '../../Modal/Modal'
 import Cart from '../Cart/Cart'
-import Confirmation from '../Confirmation/Confirmation'
 import { toast } from 'react-toastify'
+import jwt_decode from 'jwt-decode'
+import AccountButton from "../../Components/Buttons/AccountButton";
+import { Link } from "react-router-dom";
 
 export default function Menu({setAuth}) {
+  const token = localStorage.getItem("token", localStorage.token)
   const [modalToggle, setModalToggle] = useState(false)
-  const [confirmModal, setConfirmModal] = useState(false)
-  const [confirmation, setConfirmation] = useState(false)
-  const [cart, setCart] = useState(true)
   const [order, setOrder ]= useState([])
+
+  /*
+
+  const [oid, setOid]= useState('')
+  const [item, setItem] = useState([])
+
+
+  const [orderTable, setOrderTable]= useState({
+    uid: jwt_decode(token).user,
+    order_date: new Date()
+  })
+  const {uid, order_date} = orderTable
+  const url = "http://localhost:8000/dash"
+  const onClick = async e => {
+    //e.preventDefault();
+    try {
+      const body = { uid, order_date };
+      const response = await fetch(
+        url + "/orders",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(body)
+        }
+      );
+
+      const parseRes = await response.json();
+        console.log(parseRes)
+      // idea here is to take the id from Orders
+      // plug it into oid for items table
+      setOid(parseRes.id)
+      }catch (err) {
+        console.error(err.message);
+      }
+    };
+*/
 
 
   //modal handler
   const modalHandler = (e) => {
-    e.preventDefault();    
+    //e.preventDefault();    
       setModalToggle(!modalToggle)    
   };
 
-  const removeModal = (e) => {
-    e.preventDefault()
-    setConfirmModal(!confirmModal)
-  }
-
-  const confirmationHandler = (e) => {
-    e.preventDefault();
-    setModalToggle(!modalToggle)
-    setConfirmModal(!confirmModal)
-    setConfirmation(!confirmation)
-    setCart(!cart)
-  };
-
-
-// Cart Handler
-  const addToBag = (b) => {
-   
+// cart handler
+  const addToBag = (b) => {    
     const orders = order.slice()
-    console.log(orders)
     let alreadyInBag = false
     orders.forEach((i) => {
       if(i.id === b.id){
-        i.count ++  
-        //order.push({...b, count: 1})      
+        i.count ++
         alreadyInBag = true
+        
       }
     })
     if(!alreadyInBag) {
-      orders.push({...b, count: 1})
-    }
-    toast.success('Added to order')
-    setOrder([...order, b]);
-    
-  }
-console.log(order)
+     // setItem([...item, b])
+      setOrder([...order, b])
+    }; toast.success('Added to order')
 
-// TODO: add a uuid so that multiples of same don't delete all
+  }
   const removeFromBag = (b) => {
     let hardCopy = [...order]
     hardCopy = hardCopy.filter(i => i.id !== b.id)
     toast.error('Removed from order')
     setOrder(hardCopy)
   }
-
-  const [total, setTotal] = useState(0)
-
-    useEffect(() => {
-      totalValue()
-    }, [order])
-    
-    const totalValue = () => {
-      let totalVal = 0;
-      for (let i = 0; i < order.length; i++){
-        totalVal += order[i].price
-      }
-      setTotal(totalVal)
-    }
-console.log(total)
+  //console.log(item, "menu item")
+  
 
 
-  //logging handler
-  const logout = (e) => {
-    e.preventDefault()
-    localStorage.removeItem("token")
-    setAuth(false)
-    toast.success("Logout Successful")
-  }
+  
 
   return (
     <div className="Menu-container">
       <Modal show={modalToggle} showModal={modalHandler}>
             <div style={{ color: "black" }}>
               <Cart
-                show={cart}
-                showModal={modalHandler}
-                showConfirm={confirmationHandler}
                 order={order}
                 removeFromBag={removeFromBag}
-                total={total}
+                //oid={oid}
+                //item={item}
               />
             </div>
           </Modal>
-          <button onClick={e => logout(e)}>Logout</button>
-      <CartButton className="Cart-button" clicked={modalHandler} />
+          
+      <CartButton clicked={modalHandler} /*onClick={onClick}*//>
+      <Link to="./user">
+        <AccountButton />
+      </Link>
       <br />
       
       <Burger

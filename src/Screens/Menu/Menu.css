@@ -1,12 +1,11 @@
+.Menu-container{
+  margin-right: 50px;
+
+}
+
 .logo {
   display: inline-flex;
   max-width: 85%;
-}
-
-.Cart-button {
-  display: flex;
-  float: right;
-  width: 10%;
 }
 
 ul {
@@ -14,3 +13,4 @@ ul {
   display: flex;
   flex-direction: column;
 }
+

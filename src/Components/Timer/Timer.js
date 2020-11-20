@@ -1,48 +1,44 @@
-import React, { Component } from 'react'
+import React, {  useEffect, useState } from 'react'
 
-export default class Timer extends Component {
-    constructor(){
-        super()
-        this.state = {
-            minutes: 9,
-            seconds: 30,
-        }
-    }
+export default function Timer () {
+    const [minutes, setMinutes] = useState(9)
+  const [seconds, setSeconds] = useState(30);
 
-        componentDidMount() {
-            this.myInterval = setInterval(() => {
-                const { seconds, minutes } = this.state
-    
-                if (seconds > 0) {
-                    this.setState(({ seconds }) => ({
-                        seconds: seconds - 1
-                    }))
-                }
-                if (seconds === 0) {
-                    if (minutes === 0) {
-                        clearInterval(this.myInterval)
-                    } else {
-                        this.setState(({ minutes }) => ({
-                            minutes: minutes - 1,
-                            seconds: 59
-                        }))
-                    }
-                } 
-            }, 1000)
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+        if (seconds > 0){
+            setSeconds(seconds - 1)
         }
-    
-        componentWillUnmount() {
-            clearInterval(this.myInterval)
+        if (seconds === 0) {
+            if (minutes === 0){
+              return () => {
+                clearTimeout(timeout);
+              }  
+            } else {
+                setSeconds(59)
+                setMinutes(minutes - 1)
+            }
         }
-    render() {
-        const {minutes, seconds} = this.state
-        return (
-            <div>
-                {minutes === 0 && seconds === 0
+    }, 1000);
+    localStorage.setItem('seconds', seconds)
+    localStorage.setItem('minutes', minutes)
+  }, [seconds, minutes]);
+
+  useEffect(() => {
+    const second = Number(localStorage.getItem('seconds'))
+    const minute = Number(localStorage.getItem('minutes'))
+    setSeconds(second)
+    setMinutes(minute)
+  }, [])
+
+
+  return (
+    <div>
+      <div>{minutes === 0 && seconds === 0
                     ? <strong>Order Ready</strong>
                     : <strong>{minutes}:{seconds < 10 ? `0${seconds}` : seconds}</strong>
-                    }
-            </div>
-        )
-    }
+                    }</div>
+    </div>
+  )
+
 }

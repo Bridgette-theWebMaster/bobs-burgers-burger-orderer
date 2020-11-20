@@ -7,6 +7,7 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Confirmation from "./Screens/Confirmation/Confirmation";
+import Account from "./Screens/Account/Account";
 
 
 toast.configure()
@@ -19,12 +20,14 @@ function App () {
     setIsAuthenticate(boolean)
   }
   const checkAuth = async () => {
+    const url = "http://localhost:8000/auth/verify"
+    //"https://afternoon-wave-89398.herokuapp.com/auth/verify"
 
     try {
 
-      const response = await fetch("https://afternoon-wave-89398.herokuapp.com/auth/verify", {
-        method: "GET",
-        headers: { token: localStorage.jwtToken }
+      const response = await fetch(url, {
+        method: "POST",
+        headers: { token: localStorage.token }
       })
 
       const parseRes = await response.json()
@@ -84,6 +87,16 @@ function App () {
               render={(props) => 
                 isAuthenticated ? (
                   <Confirmation
+                  {...props}
+                    setAuth={setAuth}
+                  />) :
+                  <Redirect to='/login' />
+                } />
+                <Route
+              path='/user'
+              render={(props) => 
+                isAuthenticated ? (
+                  <Account
                   {...props}
                     setAuth={setAuth}
                   />) :

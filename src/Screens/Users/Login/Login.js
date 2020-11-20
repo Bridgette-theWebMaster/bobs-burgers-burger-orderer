@@ -1,7 +1,6 @@
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import './Login.css'
 import { toast } from "react-toastify";
 
 const Login = ({ setAuth }) => {
@@ -15,12 +14,15 @@ const Login = ({ setAuth }) => {
   const onChange = e =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
 
+    const url = "https://afternoon-wave-89398.herokuapp.com/auth"
+    //http://localhost:8000/auth
+
   const onSubmitForm = async e => {
     e.preventDefault();
     try {
       const body = { email, password };
       const response = await fetch(
-        "https://afternoon-wave-89398.herokuapp.com/auth/login",
+        url + "/login",
         {
           method: "POST",
           headers: {
@@ -31,7 +33,7 @@ const Login = ({ setAuth }) => {
       );
 
       const parseRes = await response.json();
-      //console.log(parseRes.jwtToken)
+      //console.log(parseRes)
       if(parseRes.jwtToken){
         localStorage.setItem("token", parseRes.jwtToken)
 
@@ -45,9 +47,9 @@ const Login = ({ setAuth }) => {
     }
   };
   return (
-    <div className="Login">
+    <div >
       <h1>Login</h1>
-      <form onSubmit={onSubmitForm}>
+      <form onSubmit={onSubmitForm} className="Login">
         <input
           type="email"
           name="email"
@@ -55,6 +57,7 @@ const Login = ({ setAuth }) => {
           onChange={e => onChange(e)}
           placeholder="Email"
         />
+        <br />
         <input
           type="password"
           name="password"
@@ -62,9 +65,11 @@ const Login = ({ setAuth }) => {
           onChange={e => onChange(e)}
           placeholder="Password"
         />
-        <button>Login</button>
+        <br />
+        <button className= 'button'>Login</button>
       </form>
-      <Link to="/register">Don't have an account? Register.</Link>
+      <br />
+      <Link to="/register" className='link'>Don't have an account? Register.</Link>
       <p>Email: Bob@bobsburgers.com
         <br />
         Password: Burgerz
