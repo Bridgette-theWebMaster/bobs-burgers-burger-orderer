@@ -54,7 +54,7 @@ console.log(body)
             />
             <br />
             <br />
-        <button className="button">Update</button>
+        <button className="button success">Update</button>
             </form>
         </div>
     )

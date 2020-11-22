@@ -32,7 +32,7 @@ export default function DeleteAccount(props) {
         };
     return (
         <div>
-            <button onClick={e => onClick(e)}>Delete Account</button>
+            <button onClick={e => onClick(e)} className='button danger'>Delete Account</button>
         </div>
     )
 }

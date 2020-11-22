@@ -49,14 +49,14 @@ const modalHandler = (e) => {
               />
             </div>
           </Modal>
-            <button onClick={() => history.goBack()}>Back</button>
-            <button onClick={e => logout(e)} className= 'button'>Logout</button>
+            <button onClick={() => history.goBack()} className='button success'>Back</button>
+            <button onClick={e => logout(e)} className= 'button danger'>Logout</button>
             <hr />
             <h1>Welcome back,</h1>
             <h2>{user}</h2>
             <p>Here you can modify your Bob's Burgers account.</p>
             <br />
-            <button onClick = {modalHandler}>Update Password</button>
+            <button onClick = {modalHandler} className='button success'>Update Password</button>
             <DeleteAccount 
               setAuth={props.setAuth}/>
         </div>

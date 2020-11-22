@@ -24,7 +24,7 @@ console.log(localStorage)
       <h3>Order Received!</h3>
       <p>Your order number {orderNum} is being made fresh!</p>
       <p>Order ready in: <Timer /></p>
-      <Link to='/menu'><button type="button" className='button'>
+      <Link to='/menu'><button type="button" className='button success'>
         Ok
       </button></Link>
     </div>

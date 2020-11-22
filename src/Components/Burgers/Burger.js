@@ -33,7 +33,7 @@ export default function Burger(props) {
               <div className='burger-price'>
                 <h3 className='price'>${b.price}</h3>
               </div>
-              <button onClick={() => props.addBurger(b)} className='button'>
+              <button onClick={() => props.addBurger(b)} className='button success'>
                 Add to Bag
               </button>
               
