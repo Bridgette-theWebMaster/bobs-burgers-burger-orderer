@@ -70,10 +70,6 @@ const Login = ({ setAuth }) => {
       </form>
       <br />
       <Link to="/register" className='link'>Don't have an account? Register.</Link>
-      <p>Email: Bob@bobsburgers.com
-        <br />
-        Password: Burgerz
-      </p>
     </div>
   );
 };
