@@ -6,41 +6,37 @@ const Register = ({ setAuth }) => {
   const [inputs, setInputs] = useState({
     email: "",
     password: "",
-    name: ""
+    name: "",
   });
 
   const { email, password, name } = inputs;
-  const url = "https://afternoon-wave-89398.herokuapp.com/auth/"
-//http://localhost:8000/auth
-  const onChange = e =>
+  const url = "https://afternoon-wave-89398.herokuapp.com/auth/";
+  //http://localhost:8000/auth
+  const onChange = (e) =>
     setInputs({ ...inputs, [e.target.name]: e.target.value });
 
-  const onSubmitForm = async e => {
+  const onSubmitForm = async (e) => {
     e.preventDefault();
     try {
       const body = { email, password, name };
-      const response = await fetch(
-        url + "/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(body)
-        }
-      );
+      const response = await fetch(url + "/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      });
       const parseRes = await response.json();
-      
-      if(parseRes.jwtToken){
-        localStorage.setItem("token", parseRes.jwtToken)
 
-        setAuth(true)
-        toast.success('Register Successful')
+      if (parseRes.jwtToken) {
+        localStorage.setItem("token", parseRes.jwtToken);
+
+        setAuth(true);
+        toast.success("Registration Successful", { autoClose: 1000 });
       } else {
-        setAuth(false)
-        toast.error(parseRes)
+        setAuth(false);
+        toast.error(parseRes, { autoClose: 1000 });
       }
-
     } catch (err) {
       console.error(err.message);
     }
@@ -49,13 +45,13 @@ const Register = ({ setAuth }) => {
   return (
     <div>
       <h1>Register</h1>
-      <form onSubmit={onSubmitForm} className='Register' >
+      <form onSubmit={onSubmitForm} className="Register">
         <input
           type="text"
           name="name"
           value={name}
           placeholder="Name"
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
         />
         <br />
         <input
@@ -63,7 +59,7 @@ const Register = ({ setAuth }) => {
           name="email"
           value={email}
           placeholder="Email"
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
         />
         <br />
         <input
@@ -71,13 +67,15 @@ const Register = ({ setAuth }) => {
           name="password"
           value={password}
           placeholder="Password"
-          onChange={e => onChange(e)}
+          onChange={(e) => onChange(e)}
         />
         <br />
-        <button className='button success'>Register</button>
+        <button className="button success">Register</button>
       </form>
       <br />
-      <Link to="/login" className='link'>Already have an account? Login.</Link>
+      <Link to="/login" className="link">
+        Already have an account? Login.
+      </Link>
     </div>
   );
 };

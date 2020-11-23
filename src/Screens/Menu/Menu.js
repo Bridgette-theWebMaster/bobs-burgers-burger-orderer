@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import Burger from "../../Components/Burgers/Burger";
 import CartButton from "../../Components/Buttons/CartButton";
 import "./Menu.css";
-import Modal from '../../Modal/Modal'
-import Cart from '../Cart/Cart'
-import { toast } from 'react-toastify'
-import jwt_decode from 'jwt-decode'
+import Modal from "../../Modal/Modal";
+import Cart from "../Cart/Cart";
+import { toast } from "react-toastify";
+import jwt_decode from "jwt-decode";
 import AccountButton from "../../Components/Buttons/AccountButton";
 import { Link } from "react-router-dom";
 
-export default function Menu({setAuth}) {
-  const token = localStorage.getItem("token", localStorage.token)
-  const [modalToggle, setModalToggle] = useState(false)
-  const [order, setOrder ]= useState([])
+export default function Menu({ setAuth }) {
+  const token = localStorage.getItem("token", localStorage.token);
+  const [modalToggle, setModalToggle] = useState(false);
+  const [order, setOrder] = useState([]);
 
   /*
 
@@ -52,64 +52,66 @@ export default function Menu({setAuth}) {
     };
 */
 
-
   //modal handler
   const modalHandler = (e) => {
-    //e.preventDefault();    
-      setModalToggle(!modalToggle)    
+    //e.preventDefault();
+    setModalToggle(!modalToggle);
   };
 
-// cart handler
-  const addToBag = (b) => {    
-    const orders = order.slice()
-    let alreadyInBag = false
+  // cart handler
+  const addToBag = (b) => {
+    const orders = order.slice();
+    let alreadyInBag = false;
     orders.forEach((i) => {
-      if(i.id === b.id){
-        i.count ++
-        alreadyInBag = true
-        
+      if (i.id === b.id) {
+        i.count++;
+        alreadyInBag = true;
       }
-    })
-    if(!alreadyInBag) {
-     // setItem([...item, b])
-      setOrder([...order, b])
-    }; toast.success('Added to order')
-
-  }
+    });
+    if (!alreadyInBag) {
+      // setItem([...item, b])
+      setOrder([...order, b]);
+    }
+    toast.success("Added to order", { autoClose: 1000 });
+  };
   const removeFromBag = (b) => {
-    let hardCopy = [...order]
-    hardCopy = hardCopy.filter(i => i.id !== b.id)
-    toast.error('Removed from order')
-    setOrder(hardCopy)
-  }
-  //console.log(item, "menu item")
-  
-
-
-  
+    let hardCopy = [...order];
+    hardCopy = hardCopy.filter((i) => i.id !== b.id);
+    toast.error("Removed from order");
+    setOrder(hardCopy);
+  };
+  //logging handler
+  const logout = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("token");
+    setAuth(false);
+    toast.success("Logout Successful", { autoClose: 1000 });
+  };
 
   return (
     <div className="Menu-container">
       <Modal show={modalToggle} showModal={modalHandler}>
-            <div style={{ color: "black" }}>
-              <Cart
-                order={order}
-                removeFromBag={removeFromBag}
-                //oid={oid}
-                //item={item}
-              />
-            </div>
-          </Modal>
-          
-      <CartButton clicked={modalHandler} /*onClick={onClick}*//>
+        <div style={{ color: "black" }}>
+          <Cart
+            order={order}
+            removeFromBag={removeFromBag}
+            //oid={oid}
+            //item={item}
+            onClick={modalHandler}
+          />
+        </div>
+      </Modal>
+
+      <CartButton clicked={modalHandler} /*onClick={onClick}*/ />
       <Link to="./user">
         <AccountButton />
       </Link>
+      <button onClick={(e) => logout(e)} className="button danger">
+        Logout
+      </button>
       <br />
-      
-      <Burger
-        addBurger={addToBag}
-      />
+
+      <Burger addBurger={addToBag} />
     </div>
   );
 }
